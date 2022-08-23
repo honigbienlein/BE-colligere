@@ -7,8 +7,6 @@ const port = 8000
 // use cors
 server.use(cors())
 
-server.use(express.json())
-
 server.get('/', (req, res) => {
     res.send('Hello World! ...')
 })
