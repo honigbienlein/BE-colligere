@@ -1,5 +1,5 @@
 import express from 'express'
-import { user_create_post, game_results } from "../controllers/"
+import { user_create_post, game_results } from "../controller"
 
 const router = express.Router()
 
