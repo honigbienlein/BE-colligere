@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize"
 import { db } from "../dbConnection"
-import User from "./userModel";
+import User from "./userModel"
 
 const Collection = db.define('Collection', {
   // Model attributes are defined here

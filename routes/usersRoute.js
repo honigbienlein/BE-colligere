@@ -1,8 +1,5 @@
-import express from 'express'
-import { users_post } from "../controller/user/userPostController.js"
-import { user_id_delete } from "../controller/user/userDeleteController.js"
-import { users_id_put } from "../controller/user/userPutController.js"
-import { users_id } from "../controller/user/userGetController.js"
+import express from "express"
+import { user_post, user_id_delete, user_id_put, user_id} from "../controller/user/index.js"
 
 const router = express.Router()
 /* 
@@ -27,11 +24,11 @@ router.route('/:id_user/collections')
  */
 
 router.route('/:id_user')
-    .get(users_id) // get information of a user
-    .put(users_id_put) // update information of a user
+    .get(user_id) // get information of a user
+    .put(user_id_put) // update information of a user
     .delete(user_id_delete) // delete is do user visible false
 
 router.route('/')
-    .post(users_post) // post a new user
+    .post(user_post) // post a new user
 
 export default router

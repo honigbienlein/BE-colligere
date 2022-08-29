@@ -1,9 +1,11 @@
+import dbConnection from "../../dbConnection.js"
 
-const users_id_put = (req, res) => { 
+const user_id_put = async (req, res) => { 
+    
+    const db = await dbConnection()
+
     res.send("users_id_put")
 }
 
 
-export {
-    users_id_put
-}
+export default user_id_put

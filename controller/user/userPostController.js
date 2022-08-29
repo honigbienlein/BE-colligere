@@ -1,13 +1,10 @@
-import { Sequelize } from "sequelize"
+import dbConnection from "../../dbConnection.js"
 
-const users_post = (req, res) => {
-
-    const sequelize = new Sequelize()
-
+const user_post = async (req, res) => {
+    const db = await dbConnection()
+    
     res.send("users_post")
 }
 
 
-export {
-    users_post
-}
+export default user_post
