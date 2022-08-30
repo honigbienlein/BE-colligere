@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import usersRoute from "./routes/usersRoute.js"
+import booksRoute from "./routes/booksRoute.js"
 
 const server = express()
 const port = process.env.PORT ?? 8000
@@ -11,6 +12,8 @@ server.use(cors())
 server.use(express.json())
 
 server.use('/users', usersRoute)
+
+server.use('/books', booksRoute)
 
 server.get('/', (req, res) => {
     res.send('Hello World! ...')

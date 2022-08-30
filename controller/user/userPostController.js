@@ -1,7 +1,7 @@
-import dbConnection from "../../dbConnection.js"
+import {connectingToColligereDB} from "../../dbConnections.js"
 
 const user_post = async (req, res) => {
-    const db = await dbConnection()
+    const db = await connectingToColligereDB()
     
     res.send("users_post")
 }
