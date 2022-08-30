@@ -1,6 +1,6 @@
 
 import express from "express"
-import {bookByISBN} from "../controller/bookByISBNController.js"
+import { bookByISBN } from "../controller/bookByISBNController.js"
 
 const router = express.Router()
 

@@ -1,4 +1,4 @@
-import {connectingToColligereDB} from "../../dbConnections.js"
+import { connectingToColligereDB } from "../../dbConnections.js"
 
 const user_id_delete = async (req, res) => {
 

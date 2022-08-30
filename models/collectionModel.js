@@ -3,7 +3,6 @@ import { db } from "../dbConnection"
 import User from "./userModel"
 
 const Collection = db.define('Collection', {
-  // Model attributes are defined here
     id_collection: {
         type: DataTypes.INTEGER,
         primaryKey: true,

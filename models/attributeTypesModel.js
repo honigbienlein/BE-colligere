@@ -4,8 +4,7 @@ import { db } from "../dbConnections"
 
 
 const AttributeType = db.define('AttributeType', {
-  // Model attributes are defined here
-  id_attributeType: {
+    id_attributeType: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

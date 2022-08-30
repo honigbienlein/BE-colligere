@@ -2,7 +2,6 @@ import { DataTypes } from "sequelize"
 import { db } from "../dbConnection"
 
 const User = db.define('User', {
-  // Model attributes are defined here
     id_user: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
