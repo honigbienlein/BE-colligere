@@ -21,6 +21,8 @@ const fetchingBookByISBN = async (isbn=1491952024) => {
         const data = responseOpenLibrary.data
         const [book] = Object.values(data)
         
+        console.log(responseOpenLibrary)
+
         const response = {
             title: book?.title,
             subtitle: book?.subtitle,
@@ -36,7 +38,8 @@ const fetchingBookByISBN = async (isbn=1491952024) => {
         return response
     }
     catch (error) {
-        console.error(error);
+        console.log(error);
+        return {}
     }
     
 }
