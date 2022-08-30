@@ -20,14 +20,14 @@ const fetchingBookByISBN = async (isbn=1491952024) => {
         const responseOpenLibrary = await axios.get(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=data&format=json`)
         const data = responseOpenLibrary.data
         const [book] = Object.values(data)
-    
+        
         const response = {
             title: book?.title,
             subtitle: book?.subtitle,
             authors: book?.authors?.map(author => author.name),
             pages: book?.number_of_pages,
-            isbn_10: book?.identifiers?.isbn_10[0],
-            isbn_13: book?.identifiers?.isbn_13[0],
+            isbn_10: book?.identifiers?.isbn_10?.find(()=>true),
+            isbn_13: book?.identifiers?.isbn_13?.find(()=>true),
             publishers: book?.publishers?.map(publisher => publisher.name),
             publish_date: book?.publish_date,
             genre: book?.subjects?.map(subject => subject.name),
