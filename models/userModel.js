@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize"
-import { db } from "../dbConnection"
+import { connectingToColligereDB } from "../dbConnections.js"
+
+const db = await connectingToColligereDB()
 
 const User = db.define('User', {
     id_user: {
@@ -34,7 +36,7 @@ const User = db.define('User', {
 }, {
     tableName:'Users',
     createdAt:'created_at',
-    updatedAt:'updated_at'
+    updatedAt: false
 });
 
 // `sequelize.define` also returns the model
