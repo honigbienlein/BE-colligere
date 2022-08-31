@@ -36,7 +36,7 @@ const User = db.define('User', {
 }, {
     tableName:'Users',
     createdAt:'created_at',
-    updatedAt: false
+    updatedAt:'updated_at'
 });
 
 // `sequelize.define` also returns the model
