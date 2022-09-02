@@ -8,4 +8,6 @@ const user_id_put = async (req, res) => {
 }
 
 
-export default user_id_put
+export {
+    user_id_put
+}
