@@ -9,6 +9,10 @@ const port = process.env.PORT ?? 8000
 // use cors
 server.use(cors())
 
+process.on('uncaughtException', function (err) {
+	console.log(err)
+}) 
+
 server.use(express.json())
 
 server.use('/users', usersRoute)
