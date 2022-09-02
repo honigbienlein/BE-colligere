@@ -1,7 +1,7 @@
-
 import { DataTypes } from "sequelize"
-import { db } from "../dbConnections"
+import { connectingToColligereDB } from "../dbConnections.js"
 
+const db = await connectingToColligereDB()
 
 const AttributeType = db.define('AttributeType', {
     id_attributeType: {
