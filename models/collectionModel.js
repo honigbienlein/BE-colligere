@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize"
-import { db } from "../dbConnection"
-import User from "./userModel"
+import { connectingToColligereDB } from "../dbConnections.js"
+import User from "./userModel.js"
+
+const db = await connectingToColligereDB()
 
 const Collection = db.define('Collection', {
     id_collection: {
