@@ -8,4 +8,6 @@ const user_id_delete = async (req, res) => {
 }
 
 
-export default user_id_delete
+export {
+    user_id_delete
+}
