@@ -1,13 +1,10 @@
-import { fetchingBookByISBN } from "../dbConnections.js"
+import { fetchingBookByISBN } from '../dbConnections.js'
 
-const getBookFromOpenLibrary = async (req, res) => { 
-    const isbn = req.params.isbn
-    const response = await fetchingBookByISBN(isbn)
+const getBookFromOpenLibrary = async (request, response) => {
+	const isbn = request.params.isbn
+	const book = await fetchingBookByISBN(isbn)
 
-    res.send(response)
+	response.send(book)
 }
 
-
-export {
-    getBookFromOpenLibrary as bookByISBN
-}
+export { getBookFromOpenLibrary as bookByISBN }

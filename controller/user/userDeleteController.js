@@ -1,13 +1,7 @@
-import { connectingToColligereDB } from "../../dbConnections.js"
+import User from '../../models/userModel.js'
 
-const user_id_delete = async (req, res) => {
-
-    const db = await connectingToColligereDB()
-
-    res.send("user_id_delete")
+const user_id_delete = async (request, response) => {
+	response.send('user_id_delete')
 }
 
-
-export {
-    user_id_delete
-}
+export { user_id_delete }
