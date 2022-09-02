@@ -1,11 +1,30 @@
-import { connectingToColligereDB } from "../../dbConnections.js"
+import User from "../../models/userModel.js"
 
+/**
+ * @TODO
+ *  - user check
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
 const user_id = async (req, res) => {
-    
-    const db = await connectingToColligereDB()
-    
-    await db.close()
-    await res.send(`id_user  =  ${req.params.id_user}`)
+    const id_user = req.params.id_user
+    const userData = await User.findOne({
+        where:{
+            id_user:id_user
+        },
+        attributes:[
+            'id_user',
+            'username',
+            'email',
+            'created_at',
+            'visible',
+            'verified_email'
+        ]
+    })
+    await res.send(userData)
 }
 
-export default user_id
+export {
+    user_id
+}
