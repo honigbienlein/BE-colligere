@@ -12,7 +12,6 @@ import User from "../../models/userModel.js"
  * 
  */
 const user_post = async (request, response) => {
-    let userToAdd
     const usernameCharLength = 3
     const usernameCharLengthFailedText = `Your username is shorter than ${usernameCharLength} chars.`
     const errorMessageUniqueUsernameFailed = "Your username is already used."
@@ -21,7 +20,7 @@ const user_post = async (request, response) => {
     const passwordLengthFailedText = "Your password is missing."
     const emptyString = ""
 
-    userToAdd = {
+    const userToAdd = {
         username: request?.body?.username,
         email: request?.body?.email,
         password: request?.body?.password
@@ -42,10 +41,11 @@ const user_post = async (request, response) => {
         const uniqueUsernameFailed = errors[0].message==="username must be unique" ? errorMessageUniqueUsernameFailed : emptyString
         
         if(usernameFailed||uniqueUsernameFailed||emailFailed||passwordFailed||uniqueEmailFailed){
-            delete userToAdd.password
+            const failedUserToAdd = {...userToAdd} 
+            delete failedUserToAdd.password
             await response.send({
                 errorMessages:[usernameFailed, uniqueUsernameFailed, emailFailed, passwordFailed, errorMessageUniqueEmailFailed],
-                data:{...userToAdd}
+                data:{...failedUserToAdd}
             })
         } else {
             response.send(errors)
