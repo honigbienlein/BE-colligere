@@ -4,11 +4,11 @@ import User from "../../models/userModel.js"
  * @TODO
  *  - user check
  * 
- * @param {*} req 
- * @param {*} res 
+ * @param {*} request 
+ * @param {*} response 
  */
-const user_id = async (req, res) => {
-    const id_user = req.params.id_user
+const user_id = async (request, response) => {
+    const id_user = request.params.id_user
     const userData = await User.findOne({
         where:{
             id_user:id_user
@@ -22,7 +22,7 @@ const user_id = async (req, res) => {
             'verified_email'
         ]
     })
-    await res.send(userData)
+    await response.send(userData)
 }
 
 export {
