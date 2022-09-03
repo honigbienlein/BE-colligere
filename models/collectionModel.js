@@ -26,7 +26,8 @@ const Collection = db.define(
 			allowNull: true,
 		},
 		name_collection: {
-			type: DataTypes.STRING(30),
+			type: DataTypes.STRING(31),
+			validate: { len: [3, 31] },
 			allowNull: false,
 		},
 	},
