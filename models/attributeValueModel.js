@@ -2,6 +2,7 @@ import { DataTypes } from 'sequelize'
 import { connectingToColligereDB } from '../dbConnections.js'
 import Entry from './entryModel.js'
 import Attribute from './attributeModel.js'
+import AttributeType from './attributeTypeModel.js'
 
 const db = await connectingToColligereDB()
 
@@ -14,6 +15,14 @@ const AttributeValue = db.define(
 			primaryKey: true,
 			allowNull: false,
 		},
+		id_entry: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: Entry,
+				key: 'id_entry',
+			},
+		},
 		id_attribute: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -22,12 +31,12 @@ const AttributeValue = db.define(
 				key: 'id_attribute',
 			},
 		},
-		id_entry: {
+		id_attributeType: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
-				model: Entry,
-				key: 'id_entry',
+				model: AttributeType,
+				key: 'id_attributeType',
 			},
 		},
 		value: {
