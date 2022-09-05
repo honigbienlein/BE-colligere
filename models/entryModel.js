@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'
 import { connectingToColligereDB } from '../dbConnections.js'
+import Collection from './collectionModel.js'
 
 const db = await connectingToColligereDB()
 
