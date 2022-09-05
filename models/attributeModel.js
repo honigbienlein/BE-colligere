@@ -14,22 +14,6 @@ const Attribute = db.define(
 			primaryKey: true,
 			allowNull: false,
 		},
-		id_collection: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: Collection,
-				key: 'id_collection',
-			},
-		},
-		id_attributeType: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: AttributeType,
-				key: 'id_attributeType',
-			},
-		},
 		name_attribute: {
 			type: DataTypes.STRING(30),
 			allowNull: false,
