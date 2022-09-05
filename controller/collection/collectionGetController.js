@@ -1,4 +1,4 @@
-import Collection from '../../models/collectionModel'
+import Collection from '../../models/collectionModel.js'
 
 const users_id_collections = async (request, response) => {
 	const id_user = request.params.id_user

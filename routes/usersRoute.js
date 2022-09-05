@@ -1,6 +1,6 @@
 import express from 'express'
 import { getUserById, addUser, updateUserById, deleteUserById } from '../controller/user/index.js'
-import { getAllCollections, getCollectionById, addCollection, updateCollectionById, deleteCollectionById } from '../controller/collection/index.js'
+import { getCollections, getCollectionById, addCollection, updateCollectionById, deleteCollectionById } from '../controller/collection/index.js'
 import { getAllItems, getItemByEntryId, addItem, updateItemByEntryId, deleteItemByEntryId } from '../controller/item/index.js'
 
 const router = express.Router()
