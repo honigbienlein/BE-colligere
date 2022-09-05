@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import usersRoute from './routes/usersRoute.js'
 import booksRoute from './routes/booksRoute.js'
+import { connectingToColligereDB } from './dbConnections.js'
 
 const server = express()
 const port = process.env.PORT ?? 8000
@@ -27,6 +28,14 @@ server.get('/', (req, res) => {
 server.all('*', (req, res) => {
 	res.send('Nothing to see 404')
 })
+
+try {
+	const db = await connectingToColligereDB()
+	await db.authenticate()
+	console.log('Connection has been established successfully.')
+} catch (error) {
+	console.error('Unable to connect to the database:', error)
+}
 
 server.listen(port, () => {
 	console.log(`Server listening on port ${port}`)
