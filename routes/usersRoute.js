@@ -24,7 +24,7 @@ router
 
 router
 	.route('/:id_user/collections')
-	.get(getAllCollections) // get a list of all collections of a user
+	.get(getCollections) // get a list of all collections of a user
 	.post(addCollection) // post a new collection
 
 router
