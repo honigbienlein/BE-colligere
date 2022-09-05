@@ -1,7 +1,5 @@
 import { DataTypes } from 'sequelize'
 import { connectingToColligereDB } from '../dbConnections.js'
-import Collection from './collectionModel.js'
-import AttributeType from './attributeTypeModel.js'
 
 const db = await connectingToColligereDB()
 
