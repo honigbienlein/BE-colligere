@@ -33,19 +33,19 @@ const AttributeValue = db.define(
 		},
 		id_attributeType: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
+			allowNull: true,
 			references: {
 				model: AttributeType,
 				key: 'id_attributeType',
 			},
 		},
-		value: {
+		attributeValue: {
 			type: DataTypes.STRING(30),
 			allowNull: false,
 		},
 	},
 	{
-		tableName: 'Attributes',
+		tableName: 'AttributeValues',
 		createdAt: 'created_at',
 		updatedAt: 'updated_at',
 	},

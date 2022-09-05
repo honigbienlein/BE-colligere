@@ -14,6 +14,7 @@ const users_id_collections_post = async (request, response) => {
 
 	let responseMessage
 	try {
+		await Collection.sync()
 		const collectionInDB = await Collection.create(collectionToAdd)
 		responseMessage = collectionInDB
 	} catch ({ errors }) {

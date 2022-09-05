@@ -5,6 +5,14 @@ import { Sequelize } from 'sequelize'
 const connectingToColligereDB = async () => {
 	const sequelize = new Sequelize(
 		`postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_DATABASE}`,
+		{
+			pool: {
+				max: 1,
+				min: 0,
+				acquire: 30000,
+				idle: 10000,
+			},
+		},
 	)
 	return sequelize
 }
