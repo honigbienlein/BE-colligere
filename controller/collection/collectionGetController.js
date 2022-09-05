@@ -12,7 +12,7 @@ const users_id_collections = async (request, response) => {
 		dataResponse = userCollections ?? 'No collections!'
 	} catch (error) {
 		console.log(error)
-		dataResponse = "Something went wrong, can't get a user."
+		dataResponse = "Something went wrong, can't get an user."
 	}
 
 	response.send(dataResponse)
