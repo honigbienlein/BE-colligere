@@ -1,3 +1,4 @@
+import Collection from '../../models/collectionModel.js'
 const users_id_collections_id_put = (request, response) => {
 	response.send('users_id_collections_id_put')
 }

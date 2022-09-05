@@ -4,9 +4,6 @@ import User from '../../models/userModel.js'
  * @TODO
  *  - user check
  *  - there is a Problem, if the username is only numbers, then will the parse a number and its searching for an user id
- *
- * @param {*} request
- * @param {*} response
  */
 const user_id = async (request, response) => {
 	const id_user = request.params.id_user

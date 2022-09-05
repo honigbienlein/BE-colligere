@@ -6,10 +6,6 @@ import User from '../../models/userModel.js'
  *    - check length
  *      - change error message
  *    - crypt
- *
- * @param {*} request
- * @param {*} response
- *
  */
 const user_post = async (request, response) => {
 	let userToAdd

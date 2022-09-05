@@ -12,7 +12,7 @@ const AttributeType = db.define(
 			primaryKey: true,
 			allowNull: false,
 		},
-		type: {
+		dataType: {
 			type: DataTypes.STRING(30),
 			allowNull: false,
 		},

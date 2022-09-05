@@ -1,10 +1,5 @@
 import Collection from '../../models/collectionModel.js'
 
-/**
- *
- * @param {*} request from frontend
- * @param {*} response to frontend
- */
 const users_id_collections_post = async (request, response) => {
 	const userId = request.params.id_user
 	const collectionNameCharLength = 31
@@ -17,9 +12,11 @@ const users_id_collections_post = async (request, response) => {
 		name_collection: request?.body?.collectionName,
 	}
 
+	let responseMessage
 	try {
+		await Collection.sync()
 		const collectionInDB = await Collection.create(collectionToAdd)
-		await response.send(collectionInDB)
+		responseMessage = collectionInDB
 	} catch ({ errors }) {
 		const collectionNameFailed =
 			!collectionToAdd.name_collection || collectionToAdd.name_collection > collectionNameCharLength
@@ -27,14 +24,15 @@ const users_id_collections_post = async (request, response) => {
 				: emptyString
 
 		if (collectionNameFailed) {
-			await response.send({
+			responseMessage = {
 				errorMessages: [collectionNameFailed],
 				data: { ...collectionToAdd },
-			})
+			}
 		} else {
-			response.send(errors)
+			responseMessage = errors
 		}
 	}
+	response.send(responseMessage)
 }
 
 export { users_id_collections_post }
