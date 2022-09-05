@@ -1,6 +1,6 @@
 import express from 'express'
 import { getUserById, addUser, updateUserById, deleteUserById } from '../controller/user/index.js'
-import { getAllCollections, getCollectionById, addCollection, updateCollectionById, deleteCollectionById } from '../controller/collection/index.js'
+import { getCollections, getCollectionById, addCollection, updateCollectionById, deleteCollectionById } from '../controller/collection/index.js'
 import { getAllItems, getItemByEntryId, addItem, updateItemByEntryId, deleteItemByEntryId } from '../controller/item/index.js'
 
 const router = express.Router()
@@ -24,7 +24,7 @@ router
 
 router
 	.route('/:id_user/collections')
-	.get(getAllCollections) // get a list of all collections of a user
+	.get(getCollections) // get a list of all collections of a user
 	.post(addCollection) // post a new collection
 
 router
