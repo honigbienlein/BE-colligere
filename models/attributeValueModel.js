@@ -40,7 +40,7 @@ const AttributeValue = db.define(
 			},
 		},
 		attributeValue: {
-			type: DataTypes.STRING(30),
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 	},
