@@ -26,7 +26,9 @@ const users_id_collections_id_items = async (request, response) => {
 				model: AttributeValue,
 				include: {
 					model: Attribute,
-					where: "title"
+					where: {
+						name_attribute:"title",
+					}
 				},
 			},
 		},
