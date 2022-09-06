@@ -11,7 +11,7 @@ const users_id_collections_post = async (request, response) => {
 		id_template: request?.body?.templateId,
 		name_collection: request?.body?.collectionName,
 	}
-
+	console.log(collectionToAdd.name_collection)
 	let responseMessage
 	try {
 		await Collection.sync()
@@ -19,7 +19,7 @@ const users_id_collections_post = async (request, response) => {
 		responseMessage = collectionInDB
 	} catch ({ errors }) {
 		const collectionNameFailed =
-			!collectionToAdd.name_collection || collectionToAdd.name_collection > collectionNameCharLength
+			!collectionToAdd.name_collection || collectionToAdd.name_collection.length > collectionNameCharLength
 				? collectionNameCharLengthFailedText
 				: emptyString
 
