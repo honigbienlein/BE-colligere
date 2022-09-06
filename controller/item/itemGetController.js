@@ -16,7 +16,7 @@ const users_id_collections_id_items = async (request, response) => {
 		foreignKey: 'id_attribute',
 	})
 
-	const [getAllItems] = await Collection.findAll({
+	const [getAllItems] = await Collection.findOne({
 		where: {
 			id_collection: collectionID,
 		},
