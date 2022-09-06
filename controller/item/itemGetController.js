@@ -33,7 +33,7 @@ const users_id_collections_id_items = async (request, response) => {
 			},
 		},
 	})
-	response.send(getAllItems)
+	response.send([getAllItems])
 }
 
 const users_id_collections_id_items_id = async (request, response) => {
