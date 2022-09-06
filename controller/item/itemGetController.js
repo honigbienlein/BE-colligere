@@ -9,14 +9,14 @@ const users_id_collections_id_items = async (request, response) => {
 	Collection.hasMany(Entry, {
 		foreignKey: 'id_collection',
 	})
-	Entry.hasMany(AttributeValue, {
+	Entry.hasOne(AttributeValue, {
 		foreignKey: 'id_entry',
 	})
 	AttributeValue.hasOne(Attribute, {
 		foreignKey: 'id_attribute',
 	})
 
-	const [getAllItems] = await Collection.findOne({
+	const [getAllItems] = await Collection.findAll({
 		where: {
 			id_collection: collectionID,
 		},
