@@ -18,7 +18,7 @@ const users_id_collections = async (request, response) => {
 	response.send(responseMessage)
 }
 const users_id_collections_id = (request, response) => {
-	response.send('users_id_collections_id')
+	response.send('users_id_collections_id - you get the items with .../items')
 }
 
 export { users_id_collections, users_id_collections_id }

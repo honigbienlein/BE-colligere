@@ -18,11 +18,11 @@ const user_post = async (request, response) => {
 	const emptyString = ''
 
 	userToAdd = {
-		username: request?.body?.username,
-		email: request?.body?.email,
-		password: request?.body?.password,
+		username: request?.data?.username,
+		email: request?.data?.email,
+		password: request?.data?.password,
 	}
-
+	console.log(request)
 	try {
 		// if table not exist sync creates a table
 		await User.sync()

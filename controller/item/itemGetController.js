@@ -17,15 +17,19 @@ const users_id_collections_id_items = async (request, response) => {
 	})
 
 	const getAllItems = await Collection.findAll({
+		attributes: ['id_collection', 'id_user', 'name_collection'],
 		where: {
 			id_collection: collectionID,
 		},
 		include: {
 			model: Entry,
+			attributes: ['id_entry', 'id_collection'],
 			include: {
 				model: AttributeValue,
+				attributes: ['attributeValue'],
 				include: {
 					model: Attribute,
+					attributes: ['id_attribute', 'name_attribute'],
 				},
 			},
 		},
@@ -49,7 +53,7 @@ const users_id_collections_id_items_id = async (request, response) => {
 			model: Attribute,
 		},
 	})
-
+	console.log(allDataOfItem)
 	const data = allDataOfItem.map(attribute => ({
 		[attribute.Attribute.name_attribute]: attribute.attributeValue,
 	}))
