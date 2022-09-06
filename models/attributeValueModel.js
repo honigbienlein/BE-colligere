@@ -41,7 +41,7 @@ const AttributeValue = db.define(
 		},
 		attributeValue: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 	},
 	{
