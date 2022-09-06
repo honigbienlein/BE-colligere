@@ -13,7 +13,7 @@ const Attribute = db.define(
 			allowNull: false,
 		},
 		name_attribute: {
-			type: DataTypes.STRING(30),
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 	},

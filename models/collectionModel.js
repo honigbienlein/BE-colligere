@@ -24,9 +24,10 @@ const Collection = db.define(
 		id_template: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
+			defaultValue: 1,
 		},
 		name_collection: {
-			type: DataTypes.STRING(30),
+			type: DataTypes.STRING,
 			allowNull: false,
 		},
 	},
