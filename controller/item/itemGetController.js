@@ -16,7 +16,7 @@ const users_id_collections_id_items = async (request, response) => {
 		foreignKey: 'id_attribute',
 	})
 
-	const getAllItems = await Collection.findAll({
+	const [getAllItems] = await Collection.findAll({
 		where: {
 			id_collection: collectionID,
 		},
@@ -33,7 +33,7 @@ const users_id_collections_id_items = async (request, response) => {
 			},
 		},
 	})
-	response.send([getAllItems])
+	response.send(getAllItem])
 }
 
 const users_id_collections_id_items_id = async (request, response) => {
