@@ -4,9 +4,35 @@ import Collection from '../../models/collectionModel.js'
 import Entry from '../../models/entryModel.js'
 import User from '../../models/userModel.js'
 
-const users_id_collections_id_items = (request, response) => {
-	response.send('users_id_collections_id_items')
+const users_id_collections_id_items = async (request, response) => {
+	const collectionID = parseInt(request.params.id_collection)
+	Collection.hasMany(Entry, {
+		foreignKey: 'id_collection',
+	})
+	Entry.hasMany(AttributeValue, {
+		foreignKey: 'id_entry',
+	})
+	AttributeValue.hasOne(Attribute, {
+		foreignKey: 'id_attribute',
+	})
+
+	const getAllItems = await Collection.findAll({
+		where: {
+			id_collection: collectionID,
+		},
+		include: {
+			model: Entry,
+			include: {
+				model: AttributeValue,
+				include: {
+					model: Attribute,
+				},
+			},
+		},
+	})
+	response.send(getAllItems)
 }
+
 const users_id_collections_id_items_id = async (request, response) => {
 	const itemId = parseInt(request.params.id_entry)
 
