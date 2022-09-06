@@ -27,8 +27,8 @@ const users_id_collections_id_items = async (request, response) => {
 				include: {
 					model: Attribute,
 					where: {
-						name_attribute:"title",
-					}
+						name_attribute: 'title',
+					},
 				},
 			},
 		},
@@ -52,9 +52,13 @@ const users_id_collections_id_items_id = async (request, response) => {
 		},
 	})
 
-	const data = allDataOfItem.map(attribute => ({
-		[attribute.Attribute.name_attribute]: attribute.attributeValue,
-	}))
+	const entries = allDataOfItem.map(attribute => [
+		attribute.Attribute.name_attribute,
+		attribute.attributeValue,
+	])
+
+	const data = Object.fromEntries(entries)
+
 	response.send(data)
 }
 
