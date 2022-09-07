@@ -4,6 +4,7 @@ const users_id_collections = async (request, response) => {
 	const id_user = request.params.id_user
 	let responseMessage
 	try {
+		await Collection.sync()
 		const userCollections = await Collection.findAll({
 			where: { id_user: id_user },
 			attributes: ['id_collection', 'id_user', 'id_template', 'name_collection'],
