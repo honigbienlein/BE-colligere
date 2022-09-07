@@ -1,7 +1,7 @@
 import express from 'express'
 import { getUserById, addUser, updateUserById, deleteUserById } from '../controller/user/index.js'
 import { getCollections, getCollectionById, addCollection, updateCollectionById, deleteCollectionById } from '../controller/collection/index.js'
-import { getAllItems, getItemByEntryId, addItem, updateItemByEntryId, deleteItemByEntryId } from '../controller/item/index.js'
+import { getAllItems, getItemByEntryId, addItem, updateItemByEntryId, deleteItemByEntryId, getAllUserItems } from '../controller/item/index.js'
 
 const router = express.Router()
 
@@ -26,6 +26,10 @@ router
 	.route('/:id_user/collections')
 	.get(getCollections) // get a list of all collections of a user
 	.post(addCollection) // post a new collection
+
+router
+	.route('/:id_user/items/:search')
+	.get(getAllUserItems) // get all items of a user
 
 router
 	.route('/:id_user')

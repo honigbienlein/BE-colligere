@@ -1,8 +1,9 @@
+import { Op } from 'sequelize'
 import Attribute from '../../models/attributeModel.js'
 import AttributeValue from '../../models/attributeValueModel.js'
 import Collection from '../../models/collectionModel.js'
 import Entry from '../../models/entryModel.js'
-import { Op } from 'sequelize'
+import User from '../../models/userModel.js'
 
 const users_id_collections_id_items = async (request, response) => {
 	const collectionID = parseInt(request.params.id_collection)
@@ -86,4 +87,54 @@ const users_id_collections_id_items_id = async (request, response) => {
 	response.send(data)
 }
 
-export { users_id_collections_id_items, users_id_collections_id_items_id }
+const users_id_items = async (request, response) => {
+	const userID = request.params.id_user
+	const searchFor = request.params.search
+
+	console.log({ userid: userID, searchfor: searchFor })
+
+	User.hasMany(Collection, {
+		foreignKey: 'id_user',
+	})
+	Collection.belongsTo(User, {
+		foreignKey: 'id_user',
+	})
+	Collection.hasMany(Entry, {
+		foreignKey: 'id_collection',
+	})
+	Entry.belongsTo(Collection, {
+		foreignKey: 'id_collection',
+	})
+	Entry.hasMany(AttributeValue, {
+		foreignKey: 'id_entry',
+	})
+	AttributeValue.belongsTo(Entry, {
+		foreignKey: 'id_entry',
+	})
+	Attribute.hasOne(AttributeValue, {
+		foreignKey: 'id_attribute',
+	})
+	AttributeValue.belongsTo(Attribute, {
+		foreignKey: 'id_attribute',
+	})
+	//Attribute.belongsTo(AttributeValue)
+
+	const [getAllItems] = await User.findAll({
+		where: { id_user: userID },
+		include: {
+			model: Collection,
+			include: {
+				model: Entry,
+				include: {
+					model: AttributeValue,
+					where: {
+						attributeValue: { [Op.substring]: searchFor },
+					},
+				},
+			},
+		},
+	})
+	response.send(getAllItems)
+}
+
+export { users_id_collections_id_items, users_id_collections_id_items_id, users_id_items }
