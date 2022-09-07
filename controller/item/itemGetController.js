@@ -2,6 +2,7 @@ import Attribute from '../../models/attributeModel.js'
 import AttributeValue from '../../models/attributeValueModel.js'
 import Collection from '../../models/collectionModel.js'
 import Entry from '../../models/entryModel.js'
+import { Op } from 'sequelize'
 
 const users_id_collections_id_items = async (request, response) => {
 	const collectionID = parseInt(request.params.id_collection)
@@ -11,7 +12,7 @@ const users_id_collections_id_items = async (request, response) => {
 	Entry.belongsTo(Collection, {
 		foreignKey: 'id_collection',
 	})
-	Entry.hasOne(AttributeValue, {
+	Entry.hasMany(AttributeValue, {
 		foreignKey: 'id_entry',
 	})
 	AttributeValue.belongsTo(Entry, {
@@ -27,22 +28,33 @@ const users_id_collections_id_items = async (request, response) => {
 
 	const [getAllItems] = await Collection.findAll({
 		where: { id_collection: collectionID },
-		attribute: ['id_collection', 'id_user', 'name_collection'],
+		//attribute: ['id_collection', 'id_user', 'name_collection'],
 		include: {
 			model: Entry,
-			attribute: ['id_entry'],
+			//attribute: ['id_entry'],
 			include: {
 				model: AttributeValue,
-				attribute: ['attributeValue'],
+				//attribute: ['attributeValue'],
 				include: {
 					model: Attribute,
-					where: { name_attribute: 'title' },
-					attribute: ['name_attribute'],
+					where: {
+						name_attribute: ['title', 'cover'],
+					},
+					//attribute: ['name_attribute'],
 				},
 			},
 		},
 	})
-	response.send(getAllItems)
+	const collectedResponse = {
+		id_collection: getAllItems?.id_collection,
+		id_user: getAllItems?.id_user,
+		name_collection: getAllItems?.name_collection,
+		Entries: getAllItems?.Entries.map(entry => ({
+			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
+			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
+		})),
+	}
+	response.send(collectedResponse)
 }
 
 const users_id_collections_id_items_id = async (request, response) => {
