@@ -51,7 +51,7 @@ const users_id_collections_id_items = async (request, response) => {
 		id_user: getAllItems?.id_user,
 		name_collection: getAllItems?.name_collection,
 		Entries: getAllItems?.Entries.map(entry => ({
-			entryId:entry?.id_entry,
+			entryId: entry?.id_entry,
 			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
 			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
 		})),
@@ -89,17 +89,9 @@ const users_id_collections_id_items_id = async (request, response) => {
 }
 
 const users_id_items = async (request, response) => {
-	const userID = request.params.id_user
+	const userID = parseInt(request.params.id_user)
 	const searchFor = request.params.search
 
-	console.log({ userid: userID, searchfor: searchFor })
-
-	User.hasMany(Collection, {
-		foreignKey: 'id_user',
-	})
-	Collection.belongsTo(User, {
-		foreignKey: 'id_user',
-	})
 	Collection.hasMany(Entry, {
 		foreignKey: 'id_collection',
 	})
@@ -120,22 +112,29 @@ const users_id_items = async (request, response) => {
 	})
 	//Attribute.belongsTo(AttributeValue)
 
-	const [getAllItems] = await User.findAll({
+	const [getAllItems] = await Collection.findAll({
 		where: { id_user: userID },
 		include: {
-			model: Collection,
+			model: Entry,
 			include: {
-				model: Entry,
-				include: {
-					model: AttributeValue,
-					where: {
-						attributeValue: { [Op.substring]: searchFor },
-					},
-				},
+				model: AttributeValue,
 			},
 		},
 	})
-	response.send(getAllItems)
+
+	const collectedItem = getAllItems?.Entries.filter(entry =>
+		entry.AttributeValues.some(obj => obj.attributeValue.includes(searchFor)),
+	)
+	const responseData = {
+		userId: userID,
+		entries: collectedItem.map(entry => ({
+			collectionId: entry.id_collection,
+			entryId: entry.id_entry,
+			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
+			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
+		})),
+	}
+	response.send(responseData)
 }
 
 export { users_id_collections_id_items, users_id_collections_id_items_id, users_id_items }
