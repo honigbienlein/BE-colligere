@@ -51,6 +51,7 @@ const users_id_collections_id_items = async (request, response) => {
 		id_user: getAllItems?.id_user,
 		name_collection: getAllItems?.name_collection,
 		Entries: getAllItems?.Entries.map(entry => ({
+			entryId:entry?.id_entry,
 			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
 			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
 		})),
