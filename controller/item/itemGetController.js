@@ -52,8 +52,8 @@ const users_id_collections_id_items = async (request, response) => {
 		name_collection: getAllItems?.name_collection,
 		Entries: getAllItems?.Entries.map(entry => ({
 			entryId: entry?.id_entry,
-			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
-			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
+			title: entry?.AttributeValues.find(obj => obj.id_attribute === 3)?.attributeValue,
+			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 1)?.attributeValue,
 		})),
 	}
 	response.send(collectedResponse)
@@ -130,8 +130,8 @@ const users_id_items = async (request, response) => {
 		entries: collectedItem.map(entry => ({
 			collectionId: entry.id_collection,
 			entryId: entry.id_entry,
-			title: entry?.AttributeValues.find(obj => obj.id_attribute === 2)?.attributeValue,
-			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 9)?.attributeValue,
+			title: entry?.AttributeValues.find(obj => obj.id_attribute === 3)?.attributeValue,
+			cover: entry?.AttributeValues.find(obj => obj.id_attribute === 1)?.attributeValue,
 		})),
 	}
 	response.send(responseData)
